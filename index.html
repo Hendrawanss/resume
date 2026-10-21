@@ -1,14 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
-    <title>Hendrawan Sulistyanto</title>
-  </head>
-  <body class="bg-slate-800 transition-all transform duration-700 ease-in-out">
-    <div id="app" class="px-0 md:px-24 lg:px-52 mx-0 md:mx-3 mb-3"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hendrawan Sulistyanto - Portofolio</title>
+  <meta name="description" content="Portofolio Hendrawan Sulistyanto, Full Stack Developer (Laravel, Vue.js, Inertia.js). Proyek, keahlian, pengalaman, dan kontak.">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <meta name="theme-color" content="#FF2D20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="container nav">
+      <a href="#beranda" class="brand" id="brand">HS<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#tentang" data-i18n="nav.about">Tentang</a></li>
+        <li><a href="#keahlian" data-i18n="nav.skills">Keahlian</a></li>
+        <li><a href="#proyek" data-i18n="nav.projects">Proyek</a></li>
+        <li><a href="#pengalaman" data-i18n="nav.experience">Pengalaman</a></li>
+        <li><a href="#pendidikan" data-i18n="nav.education">Pendidikan</a></li>
+        <li><a href="#kontak" data-i18n="nav.contact">Kontak</a></li>
+        <li class="nav-tools">
+          <div class="lang-toggle" id="langToggle" role="group" aria-label="Bahasa">
+            <button type="button" data-lang="id">ID</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
+          <button class="theme-toggle" id="themeToggle" aria-label="Tema">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="beranda" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow"><span class="dot"></span> <span id="heroStatus"></span></p>
+          <h1><span data-i18n="hero.greeting">Halo, saya</span> <span class="mark" id="heroName">Hendrawan</span>.</h1>
+          <p class="hero-role"><span class="bar"></span><span id="heroRole"></span></p>
+          <p class="lead" id="heroTagline"></p>
+          <div class="hero-actions">
+            <a href="#proyek" class="btn btn-primary" data-i18n="hero.ctaProjects">Lihat Proyek</a>
+            <a href="#kontak" class="btn btn-ghost" data-i18n="hero.ctaContact">Hubungi Saya</a>
+          </div>
+          <div class="hero-socials" id="heroSocials"></div>
+        </div>
+        <div class="hero-visual">
+          <div class="code-card">
+            <div class="code-bar"><span></span><span></span><span></span><em>routes/web.php</em></div>
+            <pre><code id="heroCode"></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
+    <!-- TENTANG -->
+    <section id="tentang" class="section" style="--sec: var(--accent)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.about">Tentang Saya</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-photo">
+            <img id="aboutPhoto" src="img/profile.svg" alt="">
+          </div>
+          <div class="about-text" id="aboutText"></div>
+        </div>
+        <div class="stats" id="stats"></div>
+      </div>
+    </section>
+
+    <!-- KEAHLIAN -->
+    <section id="keahlian" class="section section-alt" style="--sec: var(--accent-2)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.skills">Keahlian</h2>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- PROYEK -->
+    <section id="proyek" class="section" style="--sec: var(--accent-3)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.projects">Proyek Pilihan</h2>
+        </div>
+        <div class="filter-bar" id="filterBar"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- PENGALAMAN -->
+    <section id="pengalaman" class="section section-ink" style="--sec: var(--accent-3)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.experience">Pengalaman</h2>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- PENDIDIKAN -->
+    <section id="pendidikan" class="section" style="--sec: var(--accent-4)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.education">Pendidikan</h2>
+        </div>
+        <div class="edu-grid" id="eduGrid"></div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="section section-alt" style="--sec: var(--accent)">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-dash"></span>
+          <h2 data-i18n="sections.contact">Kontak</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="cta-panel">
+            <h3 data-i18n="contact.title">Mari bekerja sama.</h3>
+            <p data-i18n="contact.lead">Punya proyek atau ingin berdiskusi? Kirim pesan, saya akan membalas secepatnya.</p>
+            <ul class="contact-list" id="contactList"></ul>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="nama" data-i18n="contact.name">Nama</label>
+              <input type="text" id="nama" name="nama" required data-i18n-placeholder="contact.namePh">
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="contact.email">Email</label>
+              <input type="email" id="email" name="email" required data-i18n-placeholder="contact.emailPh">
+            </div>
+            <div class="field">
+              <label for="pesan" data-i18n="contact.message">Pesan</label>
+              <textarea id="pesan" name="pesan" rows="5" required data-i18n-placeholder="contact.messagePh"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.send">Kirim Pesan</button>
+            <p class="form-note" id="formNote"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> <span id="footerName"></span></p>
+      <a href="#beranda" class="back-top"><span data-i18n="footer.backTop">Ke atas</span> &uarr;</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
